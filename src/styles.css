@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   CaseBook — design tokens
+   Paper + ink of an academic journal, instruments of a lab.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-ink: #101826;
+  --color-ink-soft: #2a3244;
+  --color-muted: #5e6675;
+  --color-faint: #8b929e;
+
+  --color-paper: #f8f7f3;
+  --color-paper-deep: #f1efe8;
+  --color-surface: #ffffff;
+
+  --color-rule: #e5e2da;
+  --color-rule-soft: #efece5;
+
+  --color-accent: #0e6e63;
+  --color-accent-bright: #16a394;
+  --color-accent-soft: #e6f1ee;
+  --color-accent-ink: #0a4a43;
+
+  /* Reserved exclusively for verified-hour seals and service records. */
+  --color-seal: #a8801f;
+  --color-seal-soft: #f6eed9;
+
+  --color-flag: #b4462f;
+  --color-flag-soft: #f8ebe7;
+
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --radius-card: 12px;
+
+  --shadow-card: 0 1px 2px rgba(16, 24, 38, 0.04), 0 10px 30px -18px rgba(16, 24, 38, 0.22);
+  --shadow-lift: 0 2px 4px rgba(16, 24, 38, 0.05), 0 20px 44px -24px rgba(16, 24, 38, 0.3);
+  --shadow-pop: 0 24px 60px -28px rgba(16, 24, 38, 0.38);
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.012em;
+    line-height: 1.12;
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-bright);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  input, select, textarea, button { font: inherit; color: inherit; }
+
+  /* Firefox / Safari number + search chrome reset */
+  input[type="search"]::-webkit-search-decoration { -webkit-appearance: none; }
+}
+
+@layer utilities {
+  /* Small-caps mono eyebrow — the running head of the journal. */
+  .u-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .u-record {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-faint);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .u-num { font-variant-numeric: tabular-nums; }
+
+  .u-shell {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .u-shell { padding-inline: 2rem; }
+  }
+
+  .u-hairgrid {
+    background-image:
+      linear-gradient(to right, var(--color-rule-soft) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-rule-soft) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .u-rise {
+    animation: rise 0.7s var(--ease-out-soft) both;
+  }
+
+  .u-fade { animation: fade 0.9s var(--ease-out-soft) both; }
+
+  .u-prose p { margin-bottom: 1.05rem; }
+  .u-prose p:last-child { margin-bottom: 0; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(var(--dx, 4px), var(--dy, -5px)); }
+}
+@keyframes sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes dash {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Reveal-on-scroll base state (IntersectionObserver adds .is-in) */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease-out-soft),
+    transform 0.75s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Small screens: the annotated field labels become illegible when the
+   diagram scales down, so the diagram carries itself without them. */
+.lattice-labels { display: none; }
+@media (min-width: 640px) {
+  .lattice-labels { display: inline; }
+}
+
+@media print {
+  html, body { background: #fff; }
+  body { font-size: 11pt; }
+  @page { margin: 16mm; }
+  .u-shell { max-width: none; padding-inline: 0; }
+  a[href]::after { content: ""; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  /* When a service record is open, print the record alone. */
+  body.is-record-open > #root { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
