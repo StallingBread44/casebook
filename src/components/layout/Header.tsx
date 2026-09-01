@@ -22,25 +22,14 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
     <Link
       to="/"
       onClick={onClick}
-      className="group flex items-center gap-2.5"
+      className="flex items-center"
       aria-label={`${ORG.name} — home`}
     >
-      <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" className="shrink-0">
-        <circle cx="16" cy="16" r="12.5" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-rule" />
-        <g
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinejoin="round"
-          className="text-accent origin-center transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:rotate-[36deg]"
-        >
-          <path d="M16 6.5l7.4 10.8M23.4 17.3l-11.4 9M12 26.3L8.6 12.9M8.6 12.9l14.8 4.4" />
-        </g>
-        <circle cx="16" cy="16" r="2.4" className="fill-accent" />
-      </svg>
-      <span className="flex flex-col leading-none">
-        <span className="whitespace-nowrap font-display text-[19px] font-medium tracking-[-0.015em] text-ink">{ORG.short}</span>
-      </span>
+      <img
+        src="/CASEBOOK.png"
+        alt={ORG.name}
+        className="h-8 w-auto object-contain"
+      />
     </Link>
   );
 }
