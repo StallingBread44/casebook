@@ -14,7 +14,7 @@ export interface Sponsor {
   name: string;
   org: string;
   tagline: string;
-  category: "Healthcare" | "Technology" | "Real Estate" | "Education";
+  category: "Healthcare" | "Technology" | "Real Estate" | "Education" | "Farming" | "Logging";
   heroImage: string;
   logo: string | null;
   url: string;
