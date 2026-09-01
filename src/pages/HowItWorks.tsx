@@ -109,7 +109,7 @@ export default function HowItWorks() {
 
         <section className="mt-20">
           <SectionHeading eyebrow="Common questions" title="Before you start" align="left" />
-          <div className="mt-8 grid gap-x-10 gap-y-0 md:grid-cols-2">
+          <div className="mt-8 grid items-start gap-x-10 gap-y-0 md:grid-cols-2">
             {FAQ.map((item) => (
               <details key={item.q} className="group border-b border-rule py-5">
                 <summary className="flex cursor-pointer list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">

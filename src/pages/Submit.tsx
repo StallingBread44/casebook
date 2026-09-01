@@ -76,6 +76,7 @@ export default function Submit() {
   const [declared, setDeclared] = useState(false);
   const [aiUse, setAiUse] = useState("none");
   const [submitted, setSubmitted] = useState(false);
+  const [selectedField, setSelectedField] = useState("");
 
   const requiredIds = SUBMISSION_CHECKLIST.filter((c) => c.required).map((c) => c.id);
   const remaining = useMemo(
@@ -161,12 +162,27 @@ export default function Submit() {
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <Label htmlFor="field" required>Academic field</Label>
-                  <Select id="field" required defaultValue="">
+                  <Select
+                    id="field"
+                    required
+                    value={selectedField}
+                    onChange={(e) => setSelectedField(e.target.value)}
+                  >
                     <option value="" disabled>Select a field</option>
                     {FIELDS.map((f) => (
                       <option key={f.slug} value={f.slug}>{f.name}</option>
                     ))}
                   </Select>
+                  {selectedField === "other" && (
+                    <div className="mt-3">
+                      <Label htmlFor="field-other" required>Name your field</Label>
+                      <TextInput
+                        id="field-other"
+                        required
+                        placeholder="e.g. Cognitive Linguistics, Urban Planning"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div>
                   <Label htmlFor="type" required>Research type</Label>
