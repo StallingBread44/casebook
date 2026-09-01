@@ -379,7 +379,7 @@ values
     'Absolute Milk',
     'Absolute Milk (VK Dairy)',
     'Farm-Fresh Dairy & Sustainable Agriculture · Hyderabad, India',
-    'Farming',
+    'Healthcare',
     '/absolutemilk.png',
     null,
     'https://absolutemilk.com/',

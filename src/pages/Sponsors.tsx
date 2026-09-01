@@ -14,7 +14,7 @@ export interface Sponsor {
   name: string;
   org: string;
   tagline: string;
-  category: "Healthcare" | "Technology" | "Real Estate" | "Education" | "Farming" | "Logging";
+  category: "Healthcare" | "Technology" | "Real Estate" | "Education" | "Produce" | "Logging";
   heroImage: string;
   logo: string | null;
   url: string;
@@ -135,7 +135,7 @@ export const SPONSORS: Sponsor[] = [
     name: "Absolute Milk",
     org: "Absolute Milk (VK Dairy)",
     tagline: "Farm-Fresh Dairy & Sustainable Agriculture · Hyderabad, India",
-    category: "Healthcare",
+    category: "Produce",
     heroImage: "/absolutemilk.png",
     logo: null,
     url: "https://absolutemilk.com/",
@@ -195,7 +195,7 @@ export const SPONSORS: Sponsor[] = [
   },
 ];
 
-const CATEGORIES = ["All", "Healthcare", "Technology", "Education", "Real Estate", "Logging"] as const;
+const CATEGORIES = ["All", "Healthcare", "Technology", "Education", "Real Estate", "Produce", "Logging"] as const;
 type CategoryFilter = (typeof CATEGORIES)[number];
 
 /* ─────────────────────────────────────────────────────────────
