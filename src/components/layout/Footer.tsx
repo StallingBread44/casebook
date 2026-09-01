@@ -21,13 +21,13 @@ export function Footer() {
       <div className="u-shell py-16">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,2fr)]">
           <div>
-            <div className="flex items-center">
+            <Link to="/" className="inline-flex items-center transition-opacity duration-200 hover:opacity-85">
               <img
-                src="/CASEBOOK.png"
+                src="/casebook-horizontal.png"
                 alt={ORG.name}
-                className="h-8 w-auto object-contain"
+                className="h-8 sm:h-9 w-auto object-contain"
               />
-            </div>
+            </Link>
             <p className="mt-5 max-w-sm text-[14.5px] leading-relaxed text-muted">
               A student research publication. High school researchers read, run, and publish studies across
               twenty-plus academic fields — and earn verified service hours for approved work.

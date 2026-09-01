@@ -22,13 +22,13 @@ function Wordmark({ onClick }: { onClick?: () => void }) {
     <Link
       to="/"
       onClick={onClick}
-      className="flex items-center"
+      className="flex items-center transition-opacity duration-200 hover:opacity-85"
       aria-label={`${ORG.name} — home`}
     >
       <img
-        src="/CASEBOOK.png"
+        src="/casebook-horizontal.png"
         alt={ORG.name}
-        className="h-8 w-auto object-contain"
+        className="h-8 sm:h-9 w-auto object-contain"
       />
     </Link>
   );
