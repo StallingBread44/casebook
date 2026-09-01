@@ -21,6 +21,7 @@ const Review = lazy(() => import("@/pages/Review"));
 const SignIn = lazy(() => import("@/pages/SignIn"));
 const Contact = lazy(() => import("@/pages/Contact"));
 const Legal = lazy(() => import("@/pages/Legal"));
+const Sponsors = lazy(() => import("@/pages/Sponsors"));
 
 function RouteFallback() {
   return (
@@ -58,6 +59,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<Legal kind="privacy" />} />
         <Route path="/terms" element={<Legal kind="terms" />} />
+        <Route path="/sponsors" element={<Sponsors />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

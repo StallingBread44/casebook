@@ -13,6 +13,7 @@ const NAV: { label: string; to: string; covers?: string[] }[] = [
   { label: "How It Works", to: "/how-it-works" },
   { label: "Protect Your Work", to: "/protect-your-work" },
   { label: "About", to: "/about" },
+  { label: "Sponsors", to: "/sponsors" },
 ];
 
 function Wordmark({ onClick }: { onClick?: () => void }) {

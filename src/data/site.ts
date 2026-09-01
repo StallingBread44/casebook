@@ -136,6 +136,7 @@ export const FOOTER_NAV = [
     heading: "Organization",
     links: [
       { label: "About us", to: "/about" },
+      { label: "Sponsors & partners", to: "/sponsors" },
       { label: "Research integrity", to: "/integrity" },
       { label: "Protecting your work", to: "/protect-your-work" },
       { label: "Review process", to: "/about#review" },
