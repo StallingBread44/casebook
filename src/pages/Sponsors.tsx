@@ -135,7 +135,7 @@ export const SPONSORS: Sponsor[] = [
     name: "Absolute Milk",
     org: "Absolute Milk (VK Dairy)",
     tagline: "Farm-Fresh Dairy & Sustainable Agriculture · Hyderabad, India",
-    category: "Healthcare",
+    category: "Farming",
     heroImage: "/absolutemilk.png",
     logo: null,
     url: "https://absolutemilk.com/",
@@ -177,7 +177,7 @@ export const SPONSORS: Sponsor[] = [
     name: "Anuradha Timbers",
     org: "Anuradha Timbers International",
     tagline: "Architectural Hardwoods & Sustainable Timber · Hyderabad, India",
-    category: "Real Estate",
+    category: "Logging",
     heroImage: "/anuradhatimber.png",
     logo: null,
     url: "http://anuradhatimber.com/",
@@ -195,7 +195,7 @@ export const SPONSORS: Sponsor[] = [
   },
 ];
 
-const CATEGORIES = ["All", "Healthcare", "Technology", "Education", "Real Estate"] as const;
+const CATEGORIES = ["All", "Healthcare", "Technology", "Education", "Real Estate", "Farming", "Logging"] as const;
 type CategoryFilter = (typeof CATEGORIES)[number];
 
 /* ─────────────────────────────────────────────────────────────
