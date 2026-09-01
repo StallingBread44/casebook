@@ -135,7 +135,7 @@ export const SPONSORS: Sponsor[] = [
     name: "Absolute Milk",
     org: "Absolute Milk (VK Dairy)",
     tagline: "Farm-Fresh Dairy & Sustainable Agriculture · Hyderabad, India",
-    category: "Farming",
+    category: "Healthcare",
     heroImage: "/absolutemilk.png",
     logo: null,
     url: "https://absolutemilk.com/",
@@ -195,7 +195,7 @@ export const SPONSORS: Sponsor[] = [
   },
 ];
 
-const CATEGORIES = ["All", "Healthcare", "Technology", "Education", "Real Estate", "Farming", "Logging"] as const;
+const CATEGORIES = ["All", "Healthcare", "Technology", "Education", "Real Estate", "Logging"] as const;
 type CategoryFilter = (typeof CATEGORIES)[number];
 
 /* ─────────────────────────────────────────────────────────────
