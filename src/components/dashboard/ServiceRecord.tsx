@@ -5,6 +5,7 @@ import { ORG } from "@/data/site";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { formatDate } from "@/lib/utils";
+import { useAuth } from "@/lib/auth";
 
 /**
  * The service record. It is the artifact a counselor actually sees, so it is
@@ -12,8 +13,16 @@ import { formatDate } from "@/lib/utils";
  * statement of what the document does and does not certify.
  */
 export function ServiceRecord({ onClose }: { onClose: () => void }) {
+  const { user, profile } = useAuth();
   const approved = HOUR_LEDGER.filter((h) => h.status === "Approved");
   const total = approved.reduce((sum, h) => sum + h.hours, 0);
+
+  const studentFirstName = profile?.first_name || user?.user_metadata?.first_name || "Samuel";
+  const studentLastName = profile?.last_name || user?.user_metadata?.last_name || "";
+  const studentFullName = `${studentFirstName} ${studentLastName}`.trim();
+  const studentSchool = profile?.school || user?.user_metadata?.school || DEMO_STUDENT.school;
+  const studentGradYear = profile?.grade || user?.user_metadata?.grade || DEMO_STUDENT.gradYear;
+  const studentRecordId = user?.id ? `CB·STU·${user.id.slice(0, 4).toUpperCase()}` : DEMO_STUDENT.recordId;
 
   useEffect(() => {
     document.body.classList.add("is-record-open");
@@ -33,7 +42,7 @@ export function ServiceRecord({ onClose }: { onClose: () => void }) {
     <div className="fixed inset-0 z-50 overflow-y-auto bg-ink/60 p-4 sm:p-8 print:static print:overflow-visible print:bg-transparent print:p-0" role="dialog" aria-modal="true" aria-label="Service record">
       <div className="mx-auto max-w-3xl">
         <div className="mb-3 flex items-center justify-between print:hidden">
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-paper/80">Service record preview</p>
+          <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-paper/80">Official Service Record</p>
           <button
             onClick={onClose}
             className="inline-flex items-center gap-1.5 rounded-[6px] bg-paper/10 px-3 py-1.5 text-[13px] text-paper hover:bg-paper/20"
@@ -68,11 +77,11 @@ export function ServiceRecord({ onClose }: { onClose: () => void }) {
           <div className="grid gap-6 py-7 sm:grid-cols-2">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">Student</p>
-              <p className="mt-1.5 font-display text-[24px] leading-tight text-ink">{DEMO_STUDENT.name}</p>
+              <p className="mt-1.5 font-display text-[24px] leading-tight text-ink">{studentFullName}</p>
               <p className="mt-1 text-[13.5px] text-muted">
-                {DEMO_STUDENT.school} · {DEMO_STUDENT.gradYear}
+                {studentSchool} · {studentGradYear}
               </p>
-              <p className="mt-1 font-mono text-[11px] text-faint">{DEMO_STUDENT.recordId}</p>
+              <p className="mt-1 font-mono text-[11px] text-faint">{studentRecordId}</p>
             </div>
             <div className="sm:text-right">
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">Total approved hours</p>
@@ -118,33 +127,22 @@ export function ServiceRecord({ onClose }: { onClose: () => void }) {
                 casebook.org/verify, or by writing to {ORG.email}.
               </p>
             </div>
-            <div className="flex items-center gap-3">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-seal/40 bg-seal-soft text-seal">
-                <Icon name="seal" size={26} />
-              </span>
-              <div className="leading-tight">
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-seal">Verified</p>
-                <p className="mt-1 text-[12.5px] text-muted">Reviewer approved</p>
-              </div>
+            <div className="flex flex-wrap gap-2.5 print:hidden">
+              <Button variant="secondary" size="sm" icon="download" onClick={() => window.print()}>
+                Print / Save PDF
+              </Button>
+              <Button size="sm" icon="share" onClick={() => navigator.clipboard?.writeText(window.location.href)}>
+                Copy link
+              </Button>
             </div>
           </div>
 
-          <p className="mt-7 border-t border-rule pt-5 text-[12px] leading-relaxed text-muted">
-            <strong className="font-semibold text-ink-soft">What this record certifies.</strong> {ORG.name} confirms
-            that this student completed the listed research work and that a reviewer approved the hours shown.
-            Acceptance of these hours toward a school, district, honor society, or scholarship service requirement is
-            determined by that organization, not by {ORG.abbr}. Students should confirm whether their school or
-            program recognizes service hours from an outside research organization.
-          </p>
-          <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
-            Sample document — placeholder content for this preview build
-          </p>
+          <footer className="mt-8 border-t border-rule pt-4 text-[11.5px] leading-relaxed text-faint">
+            This document certifies only that the submissions named above met the published criteria of the CaseBook
+            collective on the dates indicated. It does not certify classroom attendance, non-research volunteer hours, or
+            character outside the submitted scholarship.
+          </footer>
         </article>
-
-        <div className="mt-4 flex flex-wrap justify-end gap-3 print:hidden">
-          <Button variant="secondary" onClick={onClose}>Close</Button>
-          <Button iconLeft="download" onClick={() => window.print()}>Download as PDF</Button>
-        </div>
       </div>
     </div>,
     document.body,

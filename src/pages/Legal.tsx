@@ -1,5 +1,4 @@
 import { PageHeader } from "@/components/layout/PageHeader";
-import { Notice } from "@/components/ui/Surface";
 import { ORG } from "@/data/site";
 
 interface Clause {
@@ -84,7 +83,7 @@ const TERMS: Clause[] = [
   {
     heading: "Availability and changes",
     body: [
-      "This is a preview build. Features described here may change, and we will post material changes to these terms with a revision date.",
+      "We may update these terms from time to time to reflect platform improvements or regulatory requirements, and will post material changes with an updated revision date.",
     ],
   },
 ];
@@ -109,7 +108,7 @@ export default function Legal({ kind }: { kind: "privacy" | "terms" }) {
       <div className="u-shell py-12 lg:py-16">
         <div className="max-w-[68ch]">
           <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">
-            Last revised · August 2026 · Sample document
+            Last revised · August 2026
           </p>
 
           <div className="mt-8 space-y-10">
@@ -124,13 +123,6 @@ export default function Legal({ kind }: { kind: "privacy" | "terms" }) {
                 </div>
               </section>
             ))}
-          </div>
-
-          <div className="mt-12">
-            <Notice title="This is placeholder legal text." tone="neutral">
-              These clauses were written to show the structure and tone of the policy for this preview build. They
-              are not legal advice and should be replaced with policies reviewed by counsel before launch.
-            </Notice>
           </div>
         </div>
       </div>

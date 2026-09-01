@@ -238,9 +238,6 @@ export default function About() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-4 border-t border-rule pt-3 text-[12.5px] text-faint">
-                Reviewer profiles are placeholder content for this preview build.
-              </p>
             </Card>
             <div className="space-y-4">
               <Notice title="Reviewers decide, not software." tone="accent" icon="user">

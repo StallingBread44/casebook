@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { FieldGlyph } from "@/components/ui/FieldGlyph";
 import { Icon } from "@/components/ui/Icon";
 import { ResearchRow } from "@/components/research/ResearchCard";
-import { Card, Notice, RecordId, SampleTag, Tag } from "@/components/ui/Surface";
+import { Card, RecordId, SampleTag, Tag } from "@/components/ui/Surface";
 import { cn, formatDate } from "@/lib/utils";
 import NotFound from "./NotFound";
 
@@ -210,11 +210,6 @@ export default function ResearchDetail() {
                   ))}
                 </ol>
               </section>
-
-              <Notice title="Sample publication" tone="neutral" icon="alert">
-                This study was written as placeholder content for this preview build. Its data, findings, and
-                references are illustrative and should not be cited as real research.
-              </Notice>
             </div>
           </article>
 

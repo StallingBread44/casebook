@@ -11,7 +11,7 @@ export const ORG = {
   tagline: "Student research, published.",
   founded: "2021",
   volume: "Vol. 4, No. 2",
-  email: "editors@casebook.org",
+  email: "contact@casebookresearch.com",
 };
 
 export interface Stat {
@@ -21,9 +21,9 @@ export interface Stat {
 }
 
 export const STATS: Stat[] = [
-  { value: "500+", label: "Research projects", note: "Across the full catalog since 2021." },
-  { value: "1,200+", label: "Student researchers", note: "Currently enrolled in a project or published." },
-  { value: "8,000+", label: "Volunteer hours verified", note: "Approved by reviewers, not auto-granted." },
+  { value: "23", label: "Research projects", note: "Across the full catalog since 2021." },
+  { value: "72", label: "Student researchers", note: "Currently enrolled in a project or published." },
+  { value: "1,400", label: "Volunteer hours verified", note: "Approved by reviewers, not auto-granted." },
   { value: "20+", label: "Academic fields", note: "From biology to literature." },
 ];
 

@@ -9,8 +9,9 @@ import { ResearchRow } from "@/components/research/ResearchCard";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { StageBadge } from "@/components/ui/Pipeline";
-import { Card, Notice, RecordId, SampleTag } from "@/components/ui/Surface";
+import { Card, Notice, RecordId } from "@/components/ui/Surface";
 import { cn, formatDateShort, useCountUp } from "@/lib/utils";
+import { useAuth } from "@/lib/auth";
 
 type Tab = "active" | "submitted" | "published" | "saved";
 
@@ -28,9 +29,17 @@ const STATUS_STYLES = {
 } as const;
 
 export default function Dashboard() {
+  const { user, profile, isDemo } = useAuth();
   const [params, setParams] = useSearchParams();
   const [tab, setTab] = useState<Tab>("active");
   const recordOpen = params.get("record") === "1";
+
+  const studentFirstName = profile?.first_name || user?.user_metadata?.first_name || "Samuel";
+  const studentSchool = profile?.school || user?.user_metadata?.school || DEMO_STUDENT.school;
+  const studentGradYear = profile?.grade || user?.user_metadata?.grade || DEMO_STUDENT.gradYear;
+  const studentRecordId = user?.id ? `CB·STU·${user.id.slice(0, 4).toUpperCase()}` : DEMO_STUDENT.recordId;
+  const isRealAccount = Boolean(user && !isDemo);
+
   const setRecordOpen = (open: boolean) => {
     const next = new URLSearchParams(params);
     if (open) next.set("record", "1");
@@ -52,15 +61,19 @@ export default function Dashboard() {
     <>
       <PageHeader
         eyebrow="Your dashboard"
-        title={`Welcome back, ${DEMO_STUDENT.name.split(" ")[0]}`}
+        title={`Welcome back, ${studentFirstName}`}
         lead="Your projects, submissions, and verified service hours in one place."
         tight
       >
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-          <RecordId>{DEMO_STUDENT.recordId}</RecordId>
-          <span className="text-[13px] text-muted">{DEMO_STUDENT.school} · {DEMO_STUDENT.gradYear}</span>
-          <span className="text-[13px] text-muted">Member since {DEMO_STUDENT.memberSince}</span>
-          <SampleTag label="Demo account" />
+          <RecordId>{studentRecordId}</RecordId>
+          <span className="text-[13px] text-muted">{studentSchool} · {studentGradYear}</span>
+          {isRealAccount && (
+            <span className="inline-flex items-center gap-1.5 rounded-[4px] border border-accent/30 bg-accent-soft px-2 py-[3px] font-mono text-[10px] uppercase tracking-[0.14em] text-accent-ink">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent" />
+              Verified Account
+            </span>
+          )}
         </div>
       </PageHeader>
 
@@ -119,9 +132,7 @@ export default function Dashboard() {
               <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">Next actions</p>
               <ul className="mt-4 space-y-3.5">
                 {[
-                  { text: "Complete the state matrix for four remaining states, then resubmit", to: "/submit", cta: "Resubmit" },
-                  { text: "Upload your supervisor confirmation for the oral history project", to: "/submit", cta: "Upload" },
-                  { text: "Model card audit is with a reviewer — no action needed", to: "/review", cta: "View" },
+                  { text: "Your research submission is currently in the review queue — typical decision time is 10–14 days", to: "/review", cta: "View queue" },
                 ].map((item) => (
                   <li key={item.text} className="flex items-start justify-between gap-4 border-b border-rule pb-3.5 last:border-0 last:pb-0">
                     <span className="text-[13.5px] leading-snug text-ink-soft">{item.text}</span>

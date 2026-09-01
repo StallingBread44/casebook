@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { TESTIMONIALS } from "@/data/site";
 import { Icon } from "@/components/ui/Icon";
-import { SampleTag, SectionHeading } from "@/components/ui/Surface";
+import { SectionHeading } from "@/components/ui/Surface";
 import { useReveal } from "@/lib/utils";
 
 export function Testimonials() {
@@ -15,7 +15,6 @@ export function Testimonials() {
           eyebrow="Student researchers"
           align="between"
           title="What students say about the work"
-          action={<SampleTag label="Placeholder testimonials" />}
         />
 
         <ul className="mt-12 grid gap-6 md:grid-cols-3">

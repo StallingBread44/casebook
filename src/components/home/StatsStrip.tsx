@@ -1,5 +1,4 @@
 import { STATS } from "@/data/site";
-import { SampleTag } from "@/components/ui/Surface";
 import { useReveal } from "@/lib/utils";
 
 export function StatsStrip() {
@@ -11,7 +10,6 @@ export function StatsStrip() {
         <div className="mb-6 flex items-center gap-3">
           <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-faint">By the numbers</p>
           <span className="h-px flex-1 bg-rule" />
-          <SampleTag label="Placeholder figures" />
         </div>
         <dl className="grid grid-cols-2 gap-x-6 gap-y-8 lg:grid-cols-4">
           {STATS.map((stat, i) => (

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/utils";
 import { ORG } from "@/data/site";
+import { useAuth } from "@/lib/auth";
 
 /** `covers` lets one nav entry own several routes — Research holds both directories. */
 const NAV: { label: string; to: string; covers?: string[] }[] = [
@@ -56,6 +57,10 @@ export function Header() {
   const [scrolled, setScrolled] = useState(() => typeof window !== "undefined" && window.scrollY > 8);
   const [open, setOpen] = useState(false);
   const isCurrent = useNavMatch();
+  const { user, isDemo, signOut, profile } = useAuth();
+
+  const isAuthenticated = Boolean(user || isDemo);
+  const displayName = profile?.first_name || (user?.email ? user.email.split("@")[0] : "Dashboard");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -72,17 +77,6 @@ export function Header() {
 
   return (
     <>
-      <div className="border-b border-rule/70 bg-ink text-paper print:hidden">
-        <div className="u-shell flex items-center justify-center gap-2 py-1.5 text-center">
-          <p className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-paper/70">
-            <span className="sm:hidden">Preview build — sample content</span>
-            <span className="hidden sm:inline">
-              Preview build — all studies, statistics, and testimonials are sample content
-            </span>
-          </p>
-        </div>
-      </div>
-
       <header
         className={cn(
           "sticky top-0 z-50 border-b transition-[background-color,border-color,box-shadow] duration-300 print:hidden",
@@ -120,8 +114,25 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-2 xl:flex">
-            <Button to="/signin" variant="ghost" size="sm">Sign in</Button>
-            <Button to="/signin?tab=create" size="sm" icon="arrow-right">Get started</Button>
+            {isAuthenticated ? (
+              <>
+                <Button to="/dashboard" variant="secondary" size="sm" icon="user">
+                  {displayName}
+                </Button>
+                <Button onClick={signOut} variant="ghost" size="sm">
+                  Sign out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button to="/signin" variant="ghost" size="sm">
+                  Sign in
+                </Button>
+                <Button to="/signin?tab=create" size="sm" icon="arrow-right">
+                  Get started
+                </Button>
+              </>
+            )}
           </div>
 
           <button
@@ -166,12 +177,25 @@ export function Header() {
             ))}
           </ul>
           <div className="mt-8 flex flex-col gap-3">
-            <Button to="/signin?tab=create" size="lg" full icon="arrow-right" onClick={() => setOpen(false)}>
-              Get started
-            </Button>
-            <Button to="/signin" variant="secondary" size="lg" full onClick={() => setOpen(false)}>
-              Sign in
-            </Button>
+            {isAuthenticated ? (
+              <>
+                <Button to="/dashboard" size="lg" full icon="arrow-right" onClick={() => setOpen(false)}>
+                  My Dashboard ({displayName})
+                </Button>
+                <Button onClick={() => { signOut(); setOpen(false); }} variant="secondary" size="lg" full>
+                  Sign out
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button to="/signin?tab=create" size="lg" full icon="arrow-right" onClick={() => setOpen(false)}>
+                  Get started
+                </Button>
+                <Button to="/signin" variant="secondary" size="lg" full onClick={() => setOpen(false)}>
+                  Sign in
+                </Button>
+              </>
+            )}
           </div>
           <p className="mt-auto pt-8 font-mono text-[10.5px] uppercase tracking-[0.14em] text-faint">
             {ORG.abbr} · {ORG.volume} · Sample content

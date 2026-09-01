@@ -9,18 +9,8 @@ const SOCIALS = [
     path: "M7.5 3.5h9a4 4 0 0 1 4 4v9a4 4 0 0 1-4 4h-9a4 4 0 0 1-4-4v-9a4 4 0 0 1 4-4ZM12 8.4a3.6 3.6 0 1 0 0 7.2 3.6 3.6 0 0 0 0-7.2ZM17 6.6v.02",
   },
   {
-    label: "LinkedIn",
-    href: "https://linkedin.com",
-    path: "M4.5 9.5v11M4.5 4.6v.02M10 20.5v-11M10 13.4c0-2.2 1.6-3.9 3.7-3.9 2.1 0 3.8 1.4 3.8 4v7",
-  },
-  {
-    label: "YouTube",
-    href: "https://youtube.com",
-    path: "M2.8 8.2c0-1.6 1.2-2.9 2.8-3 2.1-.2 4.2-.2 6.4-.2s4.3 0 6.4.2c1.6.1 2.8 1.4 2.8 3v7.6c0 1.6-1.2 2.9-2.8 3-2.1.2-4.2.2-6.4.2s-4.3 0-6.4-.2c-1.6-.1-2.8-1.4-2.8-3V8.2ZM10 9.4l4.6 2.6L10 14.6V9.4Z",
-  },
-  {
     label: "Email",
-    href: "mailto:editors@casebook.org",
+    href: "mailto:contact@casebookresearch.com",
     path: "M3.5 5.5h17v13h-17v-13ZM3.5 6.5 12 13l8.5-6.5",
   },
 ];
@@ -76,7 +66,7 @@ export function Footer() {
         <div className="mt-14 border-t border-rule pt-6">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-faint">
-              © {new Date().getFullYear()} {ORG.name} · {ORG.volume}
+              © {new Date().getFullYear()} {ORG.name}
             </p>
             <p className="flex items-center gap-2 text-[12.5px] text-faint">
               <Icon name="alert" size={13} />

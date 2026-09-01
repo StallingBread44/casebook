@@ -4,6 +4,7 @@ import { Card, SectionHeading, Tag, Meta, Notice } from "@/components/ui/Surface
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { useReveal, cn } from "@/lib/utils";
+import { sponsorsService } from "@/lib/supabase";
 
 /* ─────────────────────────────────────────────────────────────
    Types & Data
@@ -29,20 +30,20 @@ export const SPONSORS: Sponsor[] = [
     id: "american-kidney-institute",
     name: "American Kidney Institute",
     org: "American Kidney Institute",
-    tagline: "Leading Kidney Hospital · Vijayawada, India",
+    tagline: "Premier Nephrology & Dialysis Clinical Care · America",
     category: "Healthcare",
-    heroImage: "/sponsor-aki.jpg",
+    heroImage: "/americankidneyinstitute.png",
     logo: "/sponsor-aki-logo.jpg",
     url: "https://americankidneyinstitute.com/",
     description:
-      "American Kidney Institute is a premier kidney hospital in Vijayawada, India, committed to delivering world-class nephrology and urology care. Their clinical mission bridges American medical standards with compassionate, accessible treatment for patients across India.",
+      "American Kidney Institute is a premier clinical nephrology and urology hospital committed to delivering world-class kidney care. Their clinical mission bridges American medical standards with compassionate, accessible treatment for patients.",
     highlights: [
       "Specialized nephrology & urology clinical care",
       "State-of-the-art dialysis center & patient monitoring",
       "Kidney transplant services & post-operative care",
       "24/7 emergency nephrology & critical care unit",
     ],
-    location: "Vijayawada, India",
+    location: "America",
     founded: "2024",
     supportArea: "Clinical Health & Medical Research Fellowship",
   },
@@ -52,7 +53,7 @@ export const SPONSORS: Sponsor[] = [
     org: "Efftronics Systems Pvt. Ltd.",
     tagline: "End-to-End Smart Solutions & IoT Infrastructure",
     category: "Technology",
-    heroImage: "/sponsor-efftronics.webp",
+    heroImage: "/effetronics.jpeg",
     logo: "/sponsor-efftronics-logo.svg",
     url: "https://www.efftronics.com",
     description:
@@ -84,7 +85,7 @@ export const SPONSORS: Sponsor[] = [
       "Investment property consulting & portfolio growth",
       "Regional market analysis, trends & property valuation",
     ],
-    location: "United States",
+    location: "Phoenix, USA",
     supportArea: "Economic Analysis & Urban Geography Project Support",
   },
   {
@@ -128,6 +129,69 @@ export const SPONSORS: Sponsor[] = [
     location: "Frisco, TX",
     founded: "2018",
     supportArea: "K-12 Educational Access & Scholar Outreach",
+  },
+  {
+    id: "absolute-milk",
+    name: "Absolute Milk",
+    org: "Absolute Milk (VK Dairy)",
+    tagline: "Farm-Fresh Dairy & Sustainable Agriculture · Hyderabad, India",
+    category: "Healthcare",
+    heroImage: "/absolutemilk.png",
+    logo: null,
+    url: "https://absolutemilk.com/",
+    description:
+      "Absolute Milk is a farm-to-table dairy producer delivering pure, unadulterated milk and dairy products. Their farm-first infrastructure combines ethical animal care with modern cold-chain processing standards to provide clean, wholesome nutrition.",
+    highlights: [
+      "Farm-to-home fresh dairy production & supply chain",
+      "Zero-adulteration quality testing & cold chain preservation",
+      "Sustainable livestock welfare & nutritional science",
+      "Community nutrition outreach & agricultural research support",
+    ],
+    location: "Hyderabad, India",
+    founded: "2018",
+    supportArea: "Nutritional Science & Agricultural Supply Chain Research",
+  },
+  {
+    id: "pratap-hospital",
+    name: "Pratap Hospital",
+    org: "Pratap Super-Speciality Hospital",
+    tagline: "Plastic, Cosmetic & Reconstructive Surgery · Vijayawada, India",
+    category: "Healthcare",
+    heroImage: "/drpratapduggirala.jpg",
+    logo: null,
+    url: "https://prataphospital.com/#facilities",
+    description:
+      "Pratap Hospital is a premier super-speciality hospital in Vijayawada, led by Dr. Pratap Duggirala (MS, MCh). Specializing in cosmetic, reconstructive, hand, burns, and microsurgery, the hospital delivers high-precision clinical care with advanced operating facilities.",
+    highlights: [
+      "Advanced reconstructive, cosmetic & microsurgical procedures",
+      "Dedicated burn intensive care & trauma stabilization units",
+      "State-of-the-art laminar airflow operating theaters",
+      "Clinical fellowship & surgical outcome research mentorship",
+    ],
+    location: "Vijayawada, India",
+    founded: "2009",
+    supportArea: "Clinical Surgical Research & Reconstructive Medicine Fellowship",
+  },
+  {
+    id: "anuradha-timber",
+    name: "Anuradha Timbers",
+    org: "Anuradha Timbers International",
+    tagline: "Architectural Hardwoods & Sustainable Timber · Hyderabad, India",
+    category: "Real Estate",
+    heroImage: "/anuradhatimber.jpeg",
+    logo: null,
+    url: "http://anuradhatimber.com/",
+    description:
+      "Anuradha Timbers International is a premier importer and processor of seasoned architectural hardwoods and exotic timbers. They supply sustainable wood solutions for bespoke architecture, structural design, and specialized heritage restoration.",
+    highlights: [
+      "Imported sustainable hardwoods (Teak, Rosewood, Oak, Merbau)",
+      "Precision seasoning, kiln-drying & wood preservation technology",
+      "Architectural woodwork & sustainable material engineering",
+      "Environmental timber research & sustainable forestry advocacy",
+    ],
+    location: "Hyderabad, India",
+    founded: "1989",
+    supportArea: "Sustainable Materials, Forestry Science & Environmental Design Grant",
   },
 ];
 
@@ -180,10 +244,17 @@ function SponsorModal({
           <img
             src={sponsor.heroImage}
             alt=""
-            className="h-full w-full object-cover"
+            className={cn(
+              "h-full w-full",
+              sponsor.id === "anuradha-timber"
+                ? "object-contain bg-paper-deep p-3 rounded-xl"
+                : ["absolute-milk", "pratap-hospital"].includes(sponsor.id)
+                ? "object-contain bg-paper-deep p-3"
+                : "object-cover",
+            )}
             aria-hidden="true"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent pointer-events-none" />
 
           {/* Close button */}
           <button
@@ -326,7 +397,14 @@ function SponsorCard({
         <img
           src={sponsor.heroImage}
           alt=""
-          className="h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+          className={cn(
+            "h-full w-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]",
+            sponsor.id === "anuradha-timber"
+              ? "object-contain bg-paper-deep p-3 rounded-xl"
+              : ["absolute-milk", "pratap-hospital"].includes(sponsor.id)
+              ? "object-contain bg-paper-deep p-3"
+              : "object-cover",
+          )}
           aria-hidden="true"
           loading="lazy"
         />
@@ -398,16 +476,66 @@ function SponsorCard({
    Main Sponsors Page Component
    ───────────────────────────────────────────────────────────── */
 export default function Sponsors() {
+  const [sponsorsList, setSponsorsList] = useState<Sponsor[]>(SPONSORS);
   const [selected, setSelected] = useState<Sponsor | null>(null);
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>("All");
   const ref = useReveal<HTMLDivElement>();
 
+  useEffect(() => {
+    async function loadSponsors() {
+      try {
+        const { data, error } = await sponsorsService.getSponsors();
+        if (!error && data && data.length > 0) {
+          const localMap = new Map(SPONSORS.map((s) => [s.id, s]));
+          const mapped: Sponsor[] = data.map((d) => {
+            const local = localMap.get(d.id);
+            return {
+              id: d.id,
+              name: d.name,
+              org: d.org,
+              tagline: d.tagline,
+              category: (d.category || local?.category || "Healthcare") as Sponsor["category"],
+              heroImage:
+                d.id === "american-kidney-institute" || d.hero_image === "/sponsor-aki.jpg"
+                  ? "/americankidneyinstitute.png"
+                  : d.id === "absolute-milk"
+                  ? "/absolutemilk.png"
+                  : d.id === "pratap-hospital"
+                  ? "/drpratapduggirala.jpg"
+                  : d.hero_image || local?.heroImage || "",
+              logo: d.logo ?? local?.logo ?? null,
+              url: d.url,
+              description: d.description,
+              highlights: d.highlights || local?.highlights || [],
+              location:
+                d.id === "american-kidney-institute"
+                  ? "America"
+                  : d.id === "kosh-realty"
+                  ? "Phoenix, USA"
+                  : d.location || local?.location || "",
+              founded: d.founded || local?.founded || undefined,
+              supportArea: d.support_area || local?.supportArea || "",
+            };
+          });
+
+          // Merge any sponsors from SPONSORS that aren't yet in the remote database
+          const existingIds = new Set(mapped.map((m) => m.id));
+          const additions = SPONSORS.filter((s) => !existingIds.has(s.id));
+          setSponsorsList([...mapped, ...additions]);
+        }
+      } catch (err) {
+        console.error("Error loading sponsors from Supabase:", err);
+      }
+    }
+    loadSponsors();
+  }, []);
+
   const handleClose = useCallback(() => setSelected(null), []);
 
   const filteredSponsors = useMemo(() => {
-    if (activeCategory === "All") return SPONSORS;
-    return SPONSORS.filter((s) => s.category === activeCategory);
-  }, [activeCategory]);
+    if (activeCategory === "All") return sponsorsList;
+    return sponsorsList.filter((s) => s.category === activeCategory);
+  }, [activeCategory, sponsorsList]);
 
   return (
     <>

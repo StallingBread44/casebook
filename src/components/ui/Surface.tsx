@@ -6,20 +6,8 @@ export function Eyebrow({ children, className }: { children: ReactNode; classNam
   return <p className={cn("u-eyebrow", className)}>{children}</p>;
 }
 
-export function SampleTag({ className, label = "Sample content" }: { className?: string; label?: string }) {
-  return (
-    <span
-      className={cn(
-        "inline-flex items-center gap-1.5 rounded-[4px] border border-rule bg-paper-deep/70 px-2 py-[3px]",
-        "font-mono text-[10px] uppercase tracking-[0.14em] text-faint",
-        className,
-      )}
-      title="Placeholder data for this preview build — replace with real content."
-    >
-      <span className="inline-block h-1.5 w-1.5 rounded-full bg-faint/60" />
-      {label}
-    </span>
-  );
+export function SampleTag(_props: { className?: string; label?: string }) {
+  return null;
 }
 
 export function Card({

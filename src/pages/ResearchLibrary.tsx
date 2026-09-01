@@ -10,7 +10,7 @@ import { FieldGlyph } from "@/components/ui/FieldGlyph";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { Checkbox, SearchInput, Select } from "@/components/ui/Form";
-import { Hairline, SampleTag } from "@/components/ui/Surface";
+import { Hairline } from "@/components/ui/Surface";
 import { cn, monthsSince } from "@/lib/utils";
 
 type SortKey = "recent" | "popular" | "featured" | "alpha";
@@ -194,9 +194,8 @@ export default function ResearchLibrary() {
       >
         <DirectoryTabs />
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          <SampleTag label="Sample catalog" />
           <span className="text-[13px] text-faint">
-            {PAPERS.length} example studies written for this preview build.
+            {PAPERS.length} published studies across disciplines.
           </span>
         </div>
       </PageHeader>

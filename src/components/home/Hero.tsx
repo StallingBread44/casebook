@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/Button";
 import { FieldLattice } from "./FieldLattice";
-import { ORG } from "@/data/site";
 
 export function Hero() {
   return (
@@ -13,15 +12,7 @@ export function Hero() {
 
       <div className="u-shell relative grid items-center gap-14 py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-10 lg:py-24">
         <div>
-          <p className="u-fade flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-[10.5px] uppercase tracking-[0.18em] text-faint">
-            <span className="text-accent">{ORG.abbr}</span>
-            <span className="h-px w-6 bg-rule" />
-            <span>{ORG.volume}</span>
-            <span className="h-px w-6 bg-rule" />
-            <span>Est. {ORG.founded}</span>
-          </p>
-
-          <h1 className="u-rise mt-6 text-[clamp(2.5rem,6.2vw,4.35rem)] font-normal leading-[1.04] tracking-[-0.022em]">
+          <h1 className="u-rise text-[clamp(2.5rem,6.2vw,4.35rem)] font-normal leading-[1.04] tracking-[-0.022em]">
             Research. Explore.
             <br />
             Contribute.{" "}
@@ -55,7 +46,7 @@ export function Hero() {
         <div className="relative">
           <FieldLattice />
           <p className="mt-2 text-center font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
-            The catalog, by field · Sample figures
+            The catalog, by field
           </p>
         </div>
       </div>

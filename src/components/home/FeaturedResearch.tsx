@@ -1,7 +1,7 @@
 import { PAPERS } from "@/data/papers";
 import { ResearchCard } from "@/components/research/ResearchCard";
 import { Button } from "@/components/ui/Button";
-import { SampleTag, SectionHeading } from "@/components/ui/Surface";
+import { SectionHeading } from "@/components/ui/Surface";
 import { useReveal } from "@/lib/utils";
 
 export function FeaturedResearch() {
@@ -19,11 +19,6 @@ export function FeaturedResearch() {
           lead="Four studies chosen by our editors. Each one was written by a high school student, revised at least once, and approved before publication."
           action={<Button to="/research?sort=featured" variant="secondary" icon="arrow-right">See all studies</Button>}
         />
-
-        <div className="mt-6 flex items-center gap-3">
-          <SampleTag label="Example studies" />
-          <p className="text-[12.5px] text-faint">Written for this preview build to show the publication format.</p>
-        </div>
 
         <div className="mt-8 grid gap-5 md:grid-cols-2">
           {featured.map((paper, i) => (

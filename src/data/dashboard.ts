@@ -7,7 +7,6 @@ export const DEMO_STUDENT = {
   name: "Alex Johnson",
   school: "Franklin High School",
   gradYear: "Class of 2026",
-  memberSince: "September 2024",
   recordId: "CB·STU·10428",
 };
 
@@ -24,45 +23,6 @@ export interface HourEntry {
 
 export const HOUR_LEDGER: HourEntry[] = [
   {
-    id: "CB·HRS·2261",
-    project: "Investigating Teen Sleep & Academic Performance",
-    field: "Psychology",
-    submitted: "2026-06-30",
-    hours: 8,
-    status: "Approved",
-    reviewer: "Dr. Elena Vasquez",
-    note: "Full requirements met. Figure and limitations section exceeded the rubric.",
-  },
-  {
-    id: "CB·HRS·2118",
-    project: "How Headline Framing Changes What Readers Remember",
-    field: "Sociology",
-    submitted: "2026-04-02",
-    hours: 5,
-    status: "Approved",
-    reviewer: "Priya Shah",
-    note: "Approved after one revision round.",
-  },
-  {
-    id: "CB·HRS·1974",
-    project: "Transit Access and Grocery Availability",
-    field: "Public Health",
-    submitted: "2026-01-20",
-    hours: 9.5,
-    status: "Approved",
-    reviewer: "Dr. Amara Osei",
-    note: "Published in Vol. 3, No. 3.",
-  },
-  {
-    id: "CB·HRS·1802",
-    project: "Mapping Urban Heat Islands in Your Own City",
-    field: "Environmental Science",
-    submitted: "2025-11-14",
-    hours: 6,
-    status: "Approved",
-    reviewer: "Dr. Amara Osei",
-  },
-  {
     id: "CB·HRS·2340",
     project: "Auditing Model Cards for Publicly Released AI Systems",
     field: "Artificial Intelligence",
@@ -70,16 +30,6 @@ export const HOUR_LEDGER: HourEntry[] = [
     hours: 10,
     status: "Pending review",
     note: "In the reviewer queue. Typical turnaround is 10–14 days.",
-  },
-  {
-    id: "CB·HRS·2298",
-    project: "What Do State Financial Literacy Requirements Actually Require?",
-    field: "Finance",
-    submitted: "2026-07-22",
-    hours: 7,
-    status: "Needs revision",
-    reviewer: "Priya Shah",
-    note: "Comparison matrix is incomplete for four assigned states. Resubmit with all rows coded.",
   },
 ];
 
@@ -101,25 +51,7 @@ export const ACTIVE_PROJECTS: ActiveProject[] = [
     due: "2026-09-30",
     progress: 100,
     maxHours: 10,
-    nextStep: "No action needed — reviewer assigned 12 days ago.",
-  },
-  {
-    title: "What Do State Financial Literacy Requirements Actually Require?",
-    field: "Finance",
-    stage: "Revision Requested",
-    due: "2026-10-01",
-    progress: 80,
-    maxHours: 7,
-    nextStep: "Complete the matrix for AK, MS, NH, and WY, then resubmit.",
-  },
-  {
-    title: "Local Oral History: Documenting a Neighborhood's Change",
-    field: "History",
-    stage: "Draft",
-    due: "2026-12-01",
-    progress: 25,
-    maxHours: 9,
-    nextStep: "Ethics module complete. Upload your supervisor confirmation next.",
+    nextStep: "Submitted — reviewer assigned. Decision expected within 10–14 days.",
   },
 ];
 

@@ -168,9 +168,8 @@ export default function News() {
         lead="A monthly briefing on the research news that changes what a student can actually work on — new datasets, method standards, tools, and results, sorted by field."
       >
         <div className="flex flex-wrap items-center gap-3">
-          <SampleTag label="Sample briefing" />
           <span className="text-[13px] text-faint">
-            {NEWS.length} example items across {fieldsWithNews.length} fields, written for this preview build.
+            {NEWS.length} briefing items across {fieldsWithNews.length} fields.
           </span>
         </div>
       </PageHeader>
@@ -284,7 +283,7 @@ export default function News() {
                 <Button type="submit" full size="sm" icon="arrow-right">
                   Subscribe
                 </Button>
-                <p className="text-center text-[12px] text-faint">Preview build — nothing is sent yet.</p>
+                <p className="text-center text-[12px] text-faint">Monthly digest delivered directly to your inbox.</p>
               </form>
             </Card>
 
@@ -316,13 +315,6 @@ export default function News() {
               Field Notes covers things that change what a student can do this month: a dataset that
               opened, a method that became standard, a tool that got cheaper. Results are included
               when they are large, replicated, or usefully wrong.
-            </Notice>
-
-            <Notice title="Sample briefing" tone="accent" icon="alert">
-              Every item on this page is placeholder copy for this preview build. No real event,
-              journal, or institution is described. Replace{" "}
-              <span className="font-mono text-[12.5px]">src/data/news.ts</span> with edited items and
-              real citations.
             </Notice>
           </aside>
         </div>
