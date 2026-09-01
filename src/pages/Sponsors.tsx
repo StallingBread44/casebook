@@ -157,7 +157,7 @@ export const SPONSORS: Sponsor[] = [
     org: "Pratap Super-Speciality Hospital",
     tagline: "Plastic, Cosmetic & Reconstructive Surgery · Vijayawada, India",
     category: "Healthcare",
-    heroImage: "/drpratapduggirala.jpg",
+    heroImage: "/pratap.png",
     logo: null,
     url: "https://prataphospital.com/#facilities",
     description:
@@ -178,7 +178,7 @@ export const SPONSORS: Sponsor[] = [
     org: "Anuradha Timbers International",
     tagline: "Architectural Hardwoods & Sustainable Timber · Hyderabad, India",
     category: "Real Estate",
-    heroImage: "/anuradhatimber.jpeg",
+    heroImage: "/anuradhatimber.png",
     logo: null,
     url: "http://anuradhatimber.com/",
     description:
@@ -501,7 +501,7 @@ export default function Sponsors() {
                   : d.id === "absolute-milk"
                   ? "/absolutemilk.png"
                   : d.id === "pratap-hospital"
-                  ? "/drpratapduggirala.jpg"
+                  ? "/pratap.png"
                   : d.hero_image || local?.heroImage || "",
               logo: d.logo ?? local?.logo ?? null,
               url: d.url,
